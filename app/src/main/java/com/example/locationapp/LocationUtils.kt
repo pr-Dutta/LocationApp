@@ -9,7 +9,14 @@ class LocationUtils(val context: Context) {
 
     fun hasLocationPermission(context: Context) : Boolean {
 
+        // ContextCompat is a utility class in the Android Support Library used
+        // to access resources and information related to the application's context,
+
+        // checkSelfPermission: Determine whether you have granted a particular permission.
         return ContextCompat.checkSelfPermission(context,
+
+            // The PackageManager class in Android development is a key component for
+            // querying and accessing information about installed applications
                 Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
                 &&
                 ContextCompat.checkSelfPermission(context,
