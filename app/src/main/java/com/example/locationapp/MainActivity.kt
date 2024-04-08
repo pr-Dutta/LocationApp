@@ -42,12 +42,22 @@ fun LocationDisplay(
     context: Context
 ) {
 
+    // rememberLauncherForActivityResult():- It's typically used to manage the
+    // lifecycle of an Activity result callback.
 
+    // Show the pop-up and this will be the activity that we want to launch and
+    // when something from this pop-up is returned give me that result
     val requestPermissionLauncher = rememberLauncherForActivityResult(
+
+        // ActivityResultContracts:- It specifies the type of result you're expecting,
         contract = ActivityResultContracts.RequestMultiplePermissions(),
-        onResult = { permissions ->
-            if (permissions[Manifest.permission.ACCESS_COARSE_LOCATION] == true
-                && permissions[Manifest.permission.ACCESS_FINE_LOCATION] == true) {
+
+        //  A lambda that will be invoked with the result when it's available.
+        // Inside the lambda passed to rememberLauncherForActivityResult(),
+        // you handle the result obtained from the launched activity.
+        onResult = {
+            if (it[Manifest.permission.ACCESS_COARSE_LOCATION] == true
+                && it[Manifest.permission.ACCESS_FINE_LOCATION] == true) {
                 // I have access to location
             }else {
                 // Ask for permission
