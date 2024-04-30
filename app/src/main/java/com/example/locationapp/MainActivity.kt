@@ -60,7 +60,7 @@ fun LocationDisplay(
                 && it[Manifest.permission.ACCESS_FINE_LOCATION] == true) {
                 // I have access to location
             }else {
-                // 
+                // Ask for permission
             }
         }
     )
