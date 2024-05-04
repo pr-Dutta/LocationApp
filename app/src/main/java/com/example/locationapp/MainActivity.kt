@@ -3,6 +3,7 @@ package com.example.locationapp
 import android.content.Context
 import android.os.Bundle
 import android.Manifest
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.compose.setContent
@@ -17,6 +18,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.core.app.ActivityCompat
 import com.example.locationapp.ui.theme.LocationAppTheme
 
 class MainActivity : ComponentActivity() {
@@ -60,7 +62,23 @@ fun LocationDisplay(
                 && it[Manifest.permission.ACCESS_FINE_LOCATION] == true) {
                 // I have access to location
             }else {
-                // Ask for permission
+                val rationaleRequired = ActivityCompat.shouldShowRequestPermissionRationale(
+                    context as MainActivity,
+                    Manifest.permission.ACCESS_FINE_LOCATION
+                ) || ActivityCompat.shouldShowRequestPermissionRationale(
+                    context as MainActivity,
+                    Manifest.permission.ACCESS_COARSE_LOCATION
+                )
+
+                if (rationaleRequired) {
+                    Toast.makeText(context,
+                        "Location Permission is required for this feature to work", Toast.LENGTH_LONG)
+                        .show()
+                }else {
+                    Toast.makeText(context,
+                        "Location Permission is required Please enable it in the Android Settings",
+                        Toast.LENGTH_LONG).show()
+                }
             }
         }
     )
@@ -82,6 +100,7 @@ fun LocationDisplay(
         }
     }
 }
+
 
 
 
