@@ -18,6 +18,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.core.app.ActivityCompat
 import com.example.locationapp.ui.theme.LocationAppTheme
 
@@ -31,12 +32,20 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-
+                    MyApp()
                 }
             }
         }
     }
 }
+
+@Composable
+fun MyApp() {
+    val context = LocalContext.current
+    val locationUtils = LocationUtils(context)
+    LocationDisplay(locationUtils = locationUtils, context = context)
+}
+
 
 @Composable
 fun LocationDisplay(
@@ -94,6 +103,12 @@ fun LocationDisplay(
                 // Permission already granted, update the location
             }else {
                 // Request location permission
+                requestPermissionLauncher.launch(
+                    arrayOf(
+                        Manifest.permission.ACCESS_COARSE_LOCATION,
+                        Manifest.permission.ACCESS_FINE_LOCATION
+                    )
+                )
             }
         }) {
             Text(text = "Get Location")
