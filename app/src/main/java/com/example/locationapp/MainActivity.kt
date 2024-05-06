@@ -58,6 +58,8 @@ fun LocationDisplay(
 
     // Show the pop-up and this will be the activity that we want to launch and
     // when something from this pop-up is returned give me that result
+
+    // It registers a request to start a activity for result
     val requestPermissionLauncher = rememberLauncherForActivityResult(
 
         // ActivityResultContracts:- It specifies the type of result you're expecting,
@@ -71,6 +73,13 @@ fun LocationDisplay(
                 && it[Manifest.permission.ACCESS_FINE_LOCATION] == true) {
                 // I have access to location
             }else {
+
+                // Some common tasks that developers might use ActivityCompat for include
+                // requesting permissions, handling permission results, starting activities
+                // with transitions, and checking whether certain features are supported on the device.
+
+                // ActivityCompat.shouldShowRequestPermissionRationale: -helps developers determine
+                // whether they should show a rationale for requesting a particular permission.
                 val rationaleRequired = ActivityCompat.shouldShowRequestPermissionRationale(
                     context as MainActivity,
                     Manifest.permission.ACCESS_FINE_LOCATION
@@ -88,6 +97,10 @@ fun LocationDisplay(
                         "Location Permission is required Please enable it in the Android Settings",
                         Toast.LENGTH_LONG).show()
                 }
+
+                // This method returns true if the app has requested this permission previously
+                // and the user denied the request. It returns false if the user's response was
+                // "Never ask again," or if the permission has not been requested before.
             }
         }
     )
