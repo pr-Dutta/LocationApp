@@ -1,8 +1,8 @@
 package com.example.locationapp
 
+import android.Manifest
 import android.content.Context
 import android.os.Bundle
-import android.Manifest
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.rememberLauncherForActivityResult
@@ -20,19 +20,21 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.core.app.ActivityCompat
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.locationapp.ui.theme.LocationAppTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
+            val viewModel: LocationViewModel = viewModel()
             LocationAppTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    MyApp()
+                    MyApp(viewModel)
                 }
             }
         }
@@ -40,16 +42,17 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun MyApp() {
-    val context = LocalContext.current
+fun MyApp(viewModel: LocationViewModel) {
+    val context = LocalContext.current              // new
     val locationUtils = LocationUtils(context)
-    LocationDisplay(locationUtils = locationUtils, context = context)
+    LocationDisplay(locationUtils = locationUtils, viewModel, context = context)
 }
 
 
 @Composable
 fun LocationDisplay(
     locationUtils: LocationUtils,
+    viewModel: LocationViewModel,
     context: Context
 ) {
 

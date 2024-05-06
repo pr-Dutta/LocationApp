@@ -51,6 +51,13 @@ android {
 
 dependencies {
 
+    // This allow us to use google map location service
+    // It lets us know the latitude and longitude in terms of address
+    implementation("come.google.android.gms:play-services-location:21.0.1")         // new
+
+    // Sometime we need to add dependencies to add some import libraries
+    implementation("androidx.lifecycle:lifecycle-viewModel-compose:2.7.0")          // new
+
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
     implementation("androidx.activity:activity-compose:1.8.2")
