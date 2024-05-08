@@ -27,7 +27,10 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            //val viewModel: LocationViewModel = viewModel()
+            val viewModel: LocationViewModel = viewModel()
+
+            // Sometimes you need to add dependency to able to add import
+
             LocationAppTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(
@@ -45,7 +48,7 @@ class MainActivity : ComponentActivity() {
 fun MyApp(viewModel: LocationViewModel) {
     val context = LocalContext.current              // new
     val locationUtils = LocationUtils(context)
-    LocationDisplay(locationUtils = locationUtils, viewModel, context = context)
+    LocationDisplay(locationUtils = locationUtils, viewModel = viewModel, context = context)
 }
 
 
