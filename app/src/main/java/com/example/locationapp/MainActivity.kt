@@ -46,7 +46,15 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun MyApp(viewModel: LocationViewModel) {
-    val context = LocalContext.current              // new
+
+    // LocalContext, which provides access to the current Android Context within
+    // the Compose hierarchy. This is typically accessed using LocalContext.current.
+
+    // For example, you might use LocalContext.current to get access to resources
+    // like strings, colors, or themes, or to access Android system services like
+    // the SharedPreferences or AssetManager.
+
+    val context = LocalContext.current              // new   --- have to continue from here
     val locationUtils = LocationUtils(context)
     LocationDisplay(locationUtils = locationUtils, viewModel = viewModel, context = context)
 }
