@@ -59,7 +59,6 @@ fun MyApp(viewModel: LocationViewModel) {
     LocationDisplay(locationUtils = locationUtils, viewModel = viewModel, context = context)
 }
 
-
 @Composable
 fun LocationDisplay(
     locationUtils: LocationUtils,
