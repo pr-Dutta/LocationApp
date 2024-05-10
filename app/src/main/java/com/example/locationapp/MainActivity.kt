@@ -66,6 +66,8 @@ fun LocationDisplay(
     context: Context
 ) {
 
+    val location = viewModel.location.value
+
     // rememberLauncherForActivityResult():- It's typically used to manage the
     // lifecycle of an Activity result callback.
 
@@ -85,6 +87,8 @@ fun LocationDisplay(
             if (it[Manifest.permission.ACCESS_COARSE_LOCATION] == true
                 && it[Manifest.permission.ACCESS_FINE_LOCATION] == true) {
                 // I have access to location
+
+                locationUtils.requestLocationUpdates(viewModel)
             }else {
 
                 // Some common tasks that developers might use ActivityCompat for include
@@ -123,10 +127,19 @@ fun LocationDisplay(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(text = "Location not available")
+        
+        if (location != null) {
+            Text(text = "Address: ${location.latitude} ${location.longitude}")
+        }else {
+            Text(text = "Location not available")
+        }
+
+
         Button(onClick = {
             if (locationUtils.hasLocationPermission(context)) {
                 // Permission already granted, update the location
+
+                locationUtils.requestLocationUpdates(viewModel)
             }else {
                 // Request location permission
                 requestPermissionLauncher.launch(
