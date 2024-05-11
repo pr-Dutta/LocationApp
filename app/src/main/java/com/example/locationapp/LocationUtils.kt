@@ -15,8 +15,23 @@ import com.google.android.gms.location.Priority
 
 class LocationUtils(val context: Context) {
 
+    // FusedLocationProviderClient allow to get the latitude and longitude
+    // It will fused the location together so that we can work with it
+
+    // The FusedLocationProviderClient is like that friend. It combines various
+    // data sources to provide the best location information in an efficient way.
+    // It’s a part of Google Play services and provides a simple API for getting location information.
+
+    //LocationServices class is part of the Google Play services library,
+    // It is typically used to interact with the device's location functionality, such as
+    // retrieving the device's last known location, receiving location updates, geofencing, and more.
+
+    // This is like saying, “Hey, I need to use your location-finding skills.” By calling this
+    // function and giving it the context, you create an instance of FusedLocationProviderClient
+    // that you can use to start asking for location updates.
     private val _fusedLocationClient: FusedLocationProviderClient =
         LocationServices.getFusedLocationProviderClient(context)
+
 
     @SuppressLint("MissingPermission")
     fun requestLocationUpdates(viewModel: LocationViewModel) {
