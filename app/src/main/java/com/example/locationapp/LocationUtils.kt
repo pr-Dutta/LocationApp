@@ -33,12 +33,20 @@ class LocationUtils(val context: Context) {
         LocationServices.getFusedLocationProviderClient(context)
 
 
+    // You use @SuppressLint by placing it above a method, class, or any other
+    // piece of code you’re writing, followed by the specific warning that you want lint to ignore.
+
+    //  Now, once you’ve asked your friend (the FusedLocationProviderClient)
+    //  to find a location, you need a way for them to tell you once they’ve found it,
+    //  or if something has changed. That’s what LocationCallback is for. You provide
+    //  this callback so that you get notified about location updates or changes.
     @SuppressLint("MissingPermission")
     fun requestLocationUpdates(viewModel: LocationViewModel) {
         val locationCallback = object : LocationCallback() {
             override fun onLocationResult(locationResult: LocationResult) {
                 super.onLocationResult(locationResult)
 
+                // ?.let enables us to make a pack of latitude and longitude
                 locationResult.lastLocation?.let {
                     val location = LocationData(latitude = it.latitude, longitude = it.longitude)
                     viewModel.updateLocation(location)
@@ -46,9 +54,15 @@ class LocationUtils(val context: Context) {
             }
         }
 
+        // Without building this the location will not update
         val locationRequest = LocationRequest.Builder(
             Priority.PRIORITY_HIGH_ACCURACY, 1000).build()
 
+        // In Android, a Looper is like a conveyor belt in a factory that ensures tasks
+        // are handled one at a time in a sequence. When you get location updates, these
+        // can come at you fast, like products on an assembly line. The Looper ensures
+        // that each location update is processed in a controlled manner. It keeps a loop
+        // running that checks for messages indicating a location update and then handles them.
         _fusedLocationClient.requestLocationUpdates(locationRequest, locationCallback, Looper.getMainLooper())
     }
 
