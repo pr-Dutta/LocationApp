@@ -87,7 +87,6 @@ fun LocationDisplay(
             if (it[Manifest.permission.ACCESS_COARSE_LOCATION] == true
                 && it[Manifest.permission.ACCESS_FINE_LOCATION] == true) {
                 // I have access to location
-
                 locationUtils.requestLocationUpdates(viewModel)
             }else {
 
