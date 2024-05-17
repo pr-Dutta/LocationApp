@@ -68,6 +68,10 @@ fun LocationDisplay(
 
     val location = viewModel.location.value
 
+    val address = location?.let {
+        locationUtils.reverseGeocodeLocation(location)
+    }
+
     // rememberLauncherForActivityResult():- It's typically used to manage the
     // lifecycle of an Activity result callback.
 
@@ -128,11 +132,10 @@ fun LocationDisplay(
     ) {
         
         if (location != null) {
-            Text(text = "Address: ${location.latitude} ${location.longitude}")
+            Text(text = "Address: ${location.latitude} ${location.longitude} \n $address")
         }else {
             Text(text = "Location not available")
         }
-
 
         Button(onClick = {
             if (locationUtils.hasLocationPermission(context)) {
