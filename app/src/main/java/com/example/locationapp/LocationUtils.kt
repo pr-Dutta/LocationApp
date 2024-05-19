@@ -86,6 +86,7 @@ class LocationUtils(val context: Context) {
                     Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED
     }
 
+    // To convert latitude and longitude to an Address - need to understand this well
     fun reverseGeocodeLocation(location: LocationData) : String {
         val geocoder = Geocoder(context, Locale.getDefault())
         val coordinates = LatLng(location.latitude, location.longitude)
