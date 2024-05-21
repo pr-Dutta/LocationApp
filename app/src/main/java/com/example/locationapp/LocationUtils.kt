@@ -87,12 +87,28 @@ class LocationUtils(val context: Context) {
     }
 
     // To convert latitude and longitude to an Address - need to understand this well
+
+
+    // In Kotlin, Geocoder is a class in the Android API that provides geocoding and
+    // reverse geocoding capabilities. Geocoding is the process of transforming a street
+    // address or other description of a location into geographic coordinates (latitude and longitude),
+    // while reverse geocoding is the process of transforming geographic coordinates into a
+    // human-readable address.
+
+    // LatLng in Kotlin, particularly when working with mapping libraries like Google
+    // Maps, represents a geographical point with a latitude and longitude.
     fun reverseGeocodeLocation(location: LocationData) : String {
         val geocoder = Geocoder(context, Locale.getDefault())
+
+        // Creating an Instance: An instance of LatLng can be created by passing the
+        // latitude and longitude to its constructor.
         val coordinates = LatLng(location.latitude, location.longitude)
         val addresses: MutableList<Address>? =
             geocoder.getFromLocation(coordinates.latitude, coordinates.longitude, 1)
         return if (addresses?.isNotEmpty() == true) {
+
+            // This expression retrieves the first address line of the first address in
+            // the list of addresses returned by a geocoding query.
             addresses[0].getAddressLine(0)
         }else {
             "Address not found"
