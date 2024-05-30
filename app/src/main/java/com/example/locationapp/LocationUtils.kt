@@ -44,19 +44,19 @@ class LocationUtils(val context: Context) {
     //  to find a location, you need a way for them to tell you once they’ve found it,
     //  or if something has changed. That’s what LocationCallback is for. You provide
     //  this callback so that you get notified about location updates or changes.
-//    @SuppressLint("MissingPermission")
-//    fun requestLocationUpdates(viewModel: LocationViewModel) {
-//        val locationCallback = object : LocationCallback() {
-//            override fun onLocationResult(locationResult: LocationResult) {
-//                super.onLocationResult(locationResult)
-//
-//                // ?.let enables us to make a pack of latitude and longitude
-//                locationResult.lastLocation?.let {
-//                    val location = LocationData(latitude = it.latitude, longitude = it.longitude)
-//                    viewModel.updateLocation(location)
-//                }
-//            }
-//        }
+    @SuppressLint("MissingPermission")
+    fun requestLocationUpdates(viewModel: LocationViewModel) {
+        val locationCallback = object : LocationCallback() {
+            override fun onLocationResult(locationResult: LocationResult) {
+                super.onLocationResult(locationResult)
+
+                // ?.let enables us to make a pack of latitude and longitude
+                locationResult.lastLocation?.let {
+                    val location = LocationData(latitude = it.latitude, longitude = it.longitude)
+                    viewModel.updateLocation(location)
+                }
+            }
+        }
 
         // Without building this the location will not update
         val locationRequest = LocationRequest.Builder(
