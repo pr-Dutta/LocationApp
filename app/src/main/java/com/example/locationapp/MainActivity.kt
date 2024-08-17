@@ -112,15 +112,15 @@ fun LocationDisplay(
                     Manifest.permission.ACCESS_COARSE_LOCATION
                 )
 
-//                if (rationaleRequired) {
-//                    Toast.makeText(context,
-//                        "Location Permission is required for this feature to work", Toast.LENGTH_LONG)
-//                        .show()
-//                }else {
-//                    Toast.makeText(context,
-//                        "Location Permission is required Please enable it in the Android Settings",
-//                        Toast.LENGTH_LONG).show()
-//                }
+                if (rationaleRequired) {
+                    Toast.makeText(context,
+                        "Location Permission is required for this feature to work", Toast.LENGTH_LONG)
+                        .show()
+                }else {
+                    Toast.makeText(context,
+                        "Location Permission is required Please enable it in the Android Settings",
+                        Toast.LENGTH_LONG).show()
+                }
 
                 // This method returns true if the app has requested this permission previously
                 // and the user denied the request. It returns false if the user's response was
