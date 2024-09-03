@@ -104,13 +104,13 @@ fun LocationDisplay(
 
                 // ActivityCompat.shouldShowRequestPermissionRationale: -helps developers determine
                 // whether they should show a rationale for requesting a particular permission.
-                val rationaleRequired = ActivityCompat.shouldShowRequestPermissionRationale(
-                    context as MainActivity,
-                    Manifest.permission.ACCESS_FINE_LOCATION
-                ) || ActivityCompat.shouldShowRequestPermissionRationale(
-                    context as MainActivity,
-                    Manifest.permission.ACCESS_COARSE_LOCATION
-                )
+//                val rationaleRequired = ActivityCompat.shouldShowRequestPermissionRationale(
+//                    context as MainActivity,
+//                    Manifest.permission.ACCESS_FINE_LOCATION
+//                ) || ActivityCompat.shouldShowRequestPermissionRationale(
+//                    context as MainActivity,
+//                    Manifest.permission.ACCESS_COARSE_LOCATION
+//                )
 
                 if (rationaleRequired) {
                     Toast.makeText(context,
