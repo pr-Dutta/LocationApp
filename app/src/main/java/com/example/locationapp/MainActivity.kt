@@ -152,12 +152,12 @@ fun LocationDisplay(
                 locationUtils.requestLocationUpdates(viewModel)
             }else {
                 // Request location permission
-                requestPermissionLauncher.launch(
-                    arrayOf(
-                        Manifest.permission.ACCESS_COARSE_LOCATION,
-                        Manifest.permission.ACCESS_FINE_LOCATION
-                    )
-                )
+//                requestPermissionLauncher.launch(
+//                    arrayOf(
+//                        Manifest.permission.ACCESS_COARSE_LOCATION,
+//                        Manifest.permission.ACCESS_FINE_LOCATION
+//                    )
+//                )
             }
         }) {
             Text(text = "Get Location")
